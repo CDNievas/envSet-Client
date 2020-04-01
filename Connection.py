@@ -1,7 +1,9 @@
 from colorama import Fore
 import requests
 
+
 from Exceptions import ConnectionException
+from VarSetter import VarSetter
 import strmsg
 
 class Connection():
@@ -121,9 +123,8 @@ class Connection():
 
                 if(r["success"]):
                     
-                    ## TODO: Set env variable on machine ##
-                    print(Fore.GREEN + r["value"] + Fore.RESET)
-
+                    VarSetter.getInstance().setVar(envName,r["value"],r["desc"])
+                    
                 else:
                     print(Fore.RED + r["msg"] + Fore.RESET)
 

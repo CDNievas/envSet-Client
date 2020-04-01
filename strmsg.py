@@ -16,6 +16,10 @@ by = '''
 +-+-+ +-+-+-+-+-+-+-+-+ +-+ +-+-+-+-+-+-+-+-+-+
 '''
 
+soDetected = '''SO detectado correctamente.'''
+
+soNoDetected = '''No se ha podido detectar el SO'''
+
 connError = '''No se ha podido conectar al servidor. Intentelo mas tarde'''
 
 connOk = '''Se ha establecido la conexion al servidor correctamente'''
@@ -23,9 +27,9 @@ connOk = '''Se ha establecido la conexion al servidor correctamente'''
 menu = '''Comandos disponibles:
 login <user>
 register <user>
-envset <nombre_var> <desc> | Reemplazar/guardar una variable
+envset <nombre_var> <desc> | Reemplazar/guardar una variable en la nube
 envlist | Lista las variables
-envget <nombre_var> | Descarga y setea la variable en local
+envget <nombre_var> | Descarga y setea la variable en ambiente
 logout
 help
 exit
@@ -46,3 +50,5 @@ envId = '''Selecciona la env: '''
 noNro = '''Eso no es un numero'''
 
 noEnv = '''No existe esa variable'''
+
+linuxLogout = '''Para ver los cambios, cerra e inicia sesion nuevamente'''
