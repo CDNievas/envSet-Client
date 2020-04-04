@@ -21,7 +21,7 @@ class Connection():
 
     def testConn(self):
         try:
-            requests.get(self.url + "/api/ping")
+            requests.get(self.url + "/api/ping/")
         
         except requests.exceptions.RequestException as e:
             raise ConnectionException(e)
@@ -31,7 +31,7 @@ class Connection():
         
         try:
             payload = {"user":user, "pass":passwd}
-            r = requests.get(self.url + "/api/auth",payload)
+            r = requests.get(self.url + "/api/auth/",payload)
             r = r.json()
             if(r["success"]):
                 print(Fore.GREEN + r["msg"] + Fore.RESET)
@@ -47,7 +47,7 @@ class Connection():
 
         try:
             payload = {"user":user, "pass":passwd}
-            r = requests.post(self.url + "/api/auth",payload)
+            r = requests.post(self.url + "/api/auth/",payload)
             r = r.json()
             if(r["success"]):
                 print(Fore.GREEN + r["msg"] + Fore.RESET)
@@ -75,7 +75,7 @@ class Connection():
 
                 headers = {"Authorization": self.token}
                 payload = {"name":envName, "desc":envDesc, "value":envValue}
-                r = requests.post(self.url + "/api/envs",payload,headers=headers)
+                r = requests.post(self.url + "/api/envs/",payload,headers=headers)
                 r = r.json()
 
                 if(r["success"]):
@@ -94,7 +94,7 @@ class Connection():
             try:
 
                 headers = {"Authorization": self.token}
-                r = requests.get(self.url + "/api/envs",headers=headers)
+                r = requests.get(self.url + "/api/envs/",headers=headers)
                 r = r.json()
 
                 if(r["success"]):
