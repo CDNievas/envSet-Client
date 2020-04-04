@@ -15,7 +15,7 @@ welcome()
 try:
     VarSetter.getInstance()
     print(Fore.GREEN + strmsg.soDetected + Fore.RESET)
-    Connection.getInstance("http://localhost:8080")
+    Connection.getInstance("http://cdnapp.ddns.net:800")
     print(Fore.GREEN + strmsg.connOk + Fore.RESET)
 
 except SoNoDetectedException:
