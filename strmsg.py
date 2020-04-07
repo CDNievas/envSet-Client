@@ -27,9 +27,11 @@ connOk = '''Se ha establecido la conexion al servidor correctamente'''
 menu = '''Comandos disponibles:
 login <user>
 register <user>
-envset <nombre_var> <desc> | Reemplazar/guardar una variable en la nube
+envpush <nombre_var> <desc> | Reemplazar/guardar una variable en la nube
+envdel <nombre_var> | Borra variable de la nube
 envlist | Lista las variables
-envget <nombre_var> | Descarga y setea la variable en ambiente
+envset <nombre_var> | Descarga y setea la variable en ambiente
+envprint <nombre_var> | Descarga e imprime por consola la variable ambiente
 logout
 help
 exit

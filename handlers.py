@@ -12,12 +12,16 @@ def handleMenu(inp):
         login(inp)
     elif (comm == "register"):
         register(inp)
-    elif (comm == "envset"):
-        envset(inp)
+    elif (comm == "envpush"):
+        envpush(inp)
+    elif (comm == "envdel"):
+        envdel(inp)
     elif (comm == "envlist"):
         envlist()
-    elif (comm == "envget"):
-        envget(inp)
+    elif (comm == "envset"):
+        envset(inp)
+    elif (comm == "envprint"):
+        envprint(inp)
     elif (comm == "logout"):
         logout()
     elif (comm == "help"):
@@ -57,7 +61,7 @@ def register(inp):
 def logout():
     Connection.getInstance().logout()
 
-def envset(inp):
+def envpush(inp):
     if(len(inp) < 3):
         print(Fore.RED + strmsg.argsError + Fore.RESET)
     else:
@@ -66,21 +70,42 @@ def envset(inp):
         envValue = getpass(">> Env var value: ")
         
         try:
-            Connection.getInstance().envset(envName,envValue,envDesc)
+            Connection.getInstance().envpush(envName,envValue,envDesc)
+        except ConnectionException:
+            print(Fore.RED + strmsg.connError + Fore.RESET)
+
+def envdel(inp):
+    if(len(inp) != 2):
+        print(Fore.RED + strmsg.argsError + Fore.RESET)
+    else:
+        envName = inp[1]     
+        try:
+            Connection.getInstance().envdel(envName)
         except ConnectionException:
             print(Fore.RED + strmsg.connError + Fore.RESET)
 
 def envlist():
     Connection.getInstance().envlist()
 
-def envget(inp):
+def envset(inp):
     if(len(inp) != 2):
         print(Fore.RED + strmsg.argsError + Fore.RESET)
     else:
         envName = inp[1]
         
         try:
-            Connection.getInstance().envget(envName)
+            Connection.getInstance().envset(envName)
+        except ConnectionException:
+            print(Fore.RED + strmsg.connError + Fore.RESET)
+
+def envprint(inp):
+    if(len(inp) != 2):
+        print(Fore.RED + strmsg.argsError + Fore.RESET)
+    else:
+        envName = inp[1]
+        
+        try:
+            Connection.getInstance().envprint(envName)
         except ConnectionException:
             print(Fore.RED + strmsg.connError + Fore.RESET)
 

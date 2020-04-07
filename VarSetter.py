@@ -40,7 +40,7 @@ class VarSetter():
 class WindowsSetter():
 
     def parseVar(self, envName, envValue):
-        print("Windows")
+        print("Por ahora no funciona en Windows")
 
 class LinuxSetter():
 
@@ -84,4 +84,4 @@ class LinuxSetter():
 class MacSetter():
 
     def parseVar(self, envName, envValue):
-        print("Mac")
+        print("Por ahora no funciona en Mac")

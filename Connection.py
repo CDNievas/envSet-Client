@@ -66,7 +66,7 @@ class Connection():
             print(Fore.GREEN + strmsg.logoutOk + Fore.RESET)
 
 
-    def envset(self,envName,envValue,envDesc):
+    def envpush(self,envName,envValue,envDesc):
         if(self.token == None):
             print(Fore.RED + strmsg.noSession + Fore.RESET)
         else:
@@ -85,8 +85,25 @@ class Connection():
 
             except requests.exceptions.RequestException as e:
                 raise ConnectionException(e)
-    
 
+    def envdel(self, envName):
+        if(self.token == None):
+            print(Fore.RED + strmsg.noSession + Fore.RESET)
+        else:
+            try:
+                headers = {"Authorization": self.token}
+                r = requests.delete(self.url + "/api/envs/" + envName,headers=headers)
+                r = r.json()
+
+                if(r["success"]):
+                    print(Fore.GREEN + r["msg"] + Fore.RESET)
+                
+                else:
+                    print(Fore.RED + r["msg"] + Fore.RESET)
+
+            except requests.exceptions.RequestException as e:
+                raise ConnectionException(e)        
+    
     def envlist(self):
         if(self.token == None):
             print(Fore.RED + strmsg.noSession + Fore.RESET)
@@ -112,7 +129,7 @@ class Connection():
                 raise ConnectionException(e)
 
 
-    def envget(self, envName):
+    def envset(self, envName):
         if(self.token == None):
             print(Fore.RED + strmsg.noSession + Fore.RESET)
         else:
@@ -131,6 +148,23 @@ class Connection():
             except requests.exceptions.RequestException as e:
                 raise ConnectionException(e)
 
+    def envprint(self, envName):
+        if(self.token == None):
+            print(Fore.RED + strmsg.noSession + Fore.RESET)
+        else:
+            try:
+                headers = {"Authorization": self.token}
+                r = requests.get(self.url + "/api/envs/" + envName,headers=headers)
+                r = r.json()
+
+                if(r["success"]):
+                    print(Fore.CYAN + r["value"] + Fore.RESET)
+                    
+                else:
+                    print(Fore.RED + r["msg"] + Fore.RESET)
+
+            except requests.exceptions.RequestException as e:
+                raise ConnectionException(e)
 
     def __init__(self, _url=None):
         if Connection.__instance != None:
